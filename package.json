@@ -1,0 +1,15 @@
+{
+  "name": "@digital-nature-ltd/web-component",
+  "version": "1.0.0",
+  "description": "A base web component class containing utility methods and configuration",
+  "main": "digital-nature-web-component.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Digital-Nature-LTD/web-component"
+  },
+  "author": "Digital Nature LTD",
+  "license": "MIT"
+}
