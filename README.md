@@ -24,7 +24,7 @@ customElements.define('my-new-component', MyNewComponent);
 HTML/CSS can be added directly into an HTML file for improved readability, this can be imported and passed into the web component constructor
 ```javascript
 import DigitalNatureWebComponent from "@digital-nature-ltd/web-component";
-// remember the ?raw param when including HTML directory
+// remember the ?raw param when including HTML directly
 import myComponentTemplate from "./templates/my-new-component-template.html?raw"
 
 class MyNewComponent extends DigitalNatureWebComponent {
