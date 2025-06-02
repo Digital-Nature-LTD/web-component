@@ -6,7 +6,7 @@ This package contains a single base class for use with Web Components. This clas
 
 ### Simple usage
 ```javascript
-import DigitalNatureWebComponent from "digital-nature-web-component";
+import DigitalNatureWebComponent from "@digital-nature-ltd/web-component";
 
 class MyNewComponent extends DigitalNatureWebComponent {
     constructor() {
@@ -23,7 +23,7 @@ customElements.define('my-new-component', MyNewComponent);
 ### Template usage
 HTML/CSS can be added directly into an HTML file for improved readability, this can be imported and passed into the web component constructor
 ```javascript
-import DigitalNatureWebComponent from "digital-nature-web-component";
+import DigitalNatureWebComponent from "@digital-nature-ltd/web-component";
 // remember the ?raw param when including HTML directory
 import myComponentTemplate from "./templates/my-new-component-template.html?raw"
 
@@ -43,7 +43,7 @@ customElements.define('my-new-component', MyNewComponent);
 Your custom component will be able to handle any js events with a `handleEventtype` functions, e.g. `handleClick`
 
 ```javascript
-import DigitalNatureWebComponent from "digital-nature-web-component";
+import DigitalNatureWebComponent from "@digital-nature-ltd/web-component";
 
 class MyNewComponent extends DigitalNatureWebComponent {
     constructor() {
