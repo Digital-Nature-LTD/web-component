@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Digital-Nature-LTD/web-component"
   },
+  "homepage": "https://www.digital-nature.co.uk",
   "author": "Digital Nature LTD",
   "license": "MIT"
 }
