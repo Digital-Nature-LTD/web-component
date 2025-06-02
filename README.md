@@ -74,9 +74,9 @@ When calling the base component constructor you can pass in a configuration obje
 ### Example
 ```javascript
 {
-    template: "<div>My component <em>has some content</em></div>",
+    attachShadow: false, // default true,
     shadowMode: 'open', // default 'open'
-    attachShadow: false // default true
+    template: "<div>My component <em>has some content</em></div>",
 }
 ```
 
