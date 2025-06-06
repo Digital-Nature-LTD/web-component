@@ -24,6 +24,15 @@ export default class DigitalNatureWebComponent extends HTMLElement
         }
     }
 
+    static create()
+    {
+        if (!this.tagName) {
+            throw new Error('tagName is not defined');
+        }
+
+        return document.createElement(this.tagName);
+    }
+
     /**
      * Sets the contents of the slot to the given element
      *

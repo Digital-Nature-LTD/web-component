@@ -67,6 +67,24 @@ customElements.define('my-new-component', MyNewComponent);
 // can be used <my-new-component></my-new-component> - clicking on the component will run the handleClick function and log to console
 ```
 
+### Creating a new web component in js
+Extending components should have a static tagName property set.
+
+```javascript
+// MyNewComponent.js
+class MyNewComponent extends DigitalNatureWebComponent {
+    static tagName = 'my-new-component';
+}
+```
+
+The base web component class comes with a static helper method `create` that will create a new instance of the extending component and return it.
+```javascript
+// some-other-js-file.js
+// create the element
+let myComponentInstance = MyNewComponent.create();
+// add it to the page
+document.appendChild(myComponentInstance);
+```
 
 ## Configuration
 When calling the base component constructor you can pass in a configuration object, the available options are listed below
@@ -74,9 +92,9 @@ When calling the base component constructor you can pass in a configuration obje
 ### Example
 ```javascript
 {
-    attachShadow: false, // default true,
+    attachShadow: false, // default true
     shadowMode: 'open', // default 'open'
-    template: "<div>My component <em>has some content</em></div>",
+    template: "<div>My component <em>has some content</em></div>"
 }
 ```
 
