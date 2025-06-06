@@ -24,13 +24,13 @@ export default class DigitalNatureWebComponent extends HTMLElement
         }
     }
 
-    static create()
+    static create(options = {})
     {
         if (!this.tagName) {
             throw new Error('tagName is not defined');
         }
 
-        return document.createElement(this.tagName);
+        return new this(options);
     }
 
     /**
