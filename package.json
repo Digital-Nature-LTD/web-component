@@ -1,6 +1,6 @@
 {
   "name": "@digital-nature-ltd/web-component",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A base web component class containing utility methods and configuration",
   "main": "digital-nature-web-component.js",
   "scripts": {
