@@ -81,7 +81,10 @@ The base web component class comes with a static helper method `create` that wil
 ```javascript
 // some-other-js-file.js
 // create the element
-let myComponentInstance = MyNewComponent.create();
+let myComponentInstance = MyNewComponent.create({
+    // you can pass in options here, e.g. template, attachShadow, shadowMode
+    template: "<div>My component <em>has some content</em></div>"
+});
 // add it to the page
 document.appendChild(myComponentInstance);
 ```
