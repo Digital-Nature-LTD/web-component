@@ -22,6 +22,31 @@ export default class DigitalNatureWebComponent extends HTMLElement
             templateElement.innerHTML = this.options.template;
             this.shadowRoot.appendChild(templateElement.content.cloneNode(true));
         }
+
+        if (this.options.stylesheets) {
+            let adoptedStylesheets = [];
+
+            options.stylesheets.forEach(stylesheet => {
+                let adoptedStylesheet;
+
+                if (typeof stylesheet === 'string') {
+                    adoptedStylesheet = new CSSStyleSheet();
+                    adoptedStylesheet.replaceSync(stylesheet);
+                } else {
+                    adoptedStylesheet = stylesheet;
+                }
+
+                if (adoptedStylesheet instanceof CSSStyleSheet) {
+                    adoptedStylesheets.push(adoptedStylesheet);
+                } else {
+                    console.error('Failed to load stylesheet:', stylesheet, 'is not a valid CSSStyleSheet or string');
+                }
+            });
+
+            if (adoptedStylesheets.length > 0) {
+                this.shadowRoot.adoptedStyleSheets = adoptedStylesheets;
+            }
+        }
     }
 
     static create(options = {})

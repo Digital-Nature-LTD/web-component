@@ -97,7 +97,8 @@ When calling the base component constructor you can pass in a configuration obje
 {
     attachShadow: false, // default true
     shadowMode: 'open', // default 'open'
-    template: "<div>My component <em>has some content</em></div>"
+    template: "<div>My component <em>has some content</em></div>",
+    stylesheets: [adoptedStylesheet, "div { color: red !important; }"]
 }
 ```
 
@@ -109,3 +110,6 @@ If you are attaching the shadow DOM then this controls the mode, options are `op
 
 ### template
 The template should be a string of HTML
+
+### stylesheets
+An array of stylesheets to be adopted by the component, either as a string or an instance of `CSSStyleSheet`
