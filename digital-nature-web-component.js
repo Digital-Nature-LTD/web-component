@@ -1,19 +1,28 @@
+import styleHelper from './digital-nature-web-component-style-helper.js';
+
 export default class DigitalNatureWebComponent extends HTMLElement
 {
     options = {
         template: null,
         mode: 'open',
         attachShadow: true,
+        stylesheets: [],
     }
 
     constructor(options = {}) {
         super();
+
+        let component = this;
 
         // merge in new options
         this.options = {...this.options, ...options};
 
         if (this.options.attachShadow) {
             this.attachShadow({mode: this.options.mode});
+
+            let allStyles = this.getAdoptedStyles().concat(this.options.stylesheets);
+
+            allStyles.map(this.adopt.bind(this));
         }
 
         if (this.options.template) {
@@ -22,33 +31,33 @@ export default class DigitalNatureWebComponent extends HTMLElement
             templateElement.innerHTML = this.options.template;
             this.shadowRoot.appendChild(templateElement.content.cloneNode(true));
         }
-
-        if (this.options.stylesheets) {
-            let adoptedStylesheets = [];
-
-            options.stylesheets.forEach(stylesheet => {
-                let adoptedStylesheet;
-
-                if (typeof stylesheet === 'string') {
-                    adoptedStylesheet = new CSSStyleSheet();
-                    adoptedStylesheet.replaceSync(stylesheet);
-                } else {
-                    adoptedStylesheet = stylesheet;
-                }
-
-                if (adoptedStylesheet instanceof CSSStyleSheet) {
-                    adoptedStylesheets.push(adoptedStylesheet);
-                } else {
-                    console.error('Failed to load stylesheet:', stylesheet, 'is not a valid CSSStyleSheet or string');
-                }
-            });
-
-            if (adoptedStylesheets.length > 0) {
-                this.shadowRoot.adoptedStyleSheets = adoptedStylesheets;
-            }
-        }
     }
 
+    /**
+     * Adopts the given stylesheet, formatted using the helper
+     *
+     * @param stylesheet
+     */
+    adopt(stylesheet) {
+        styleHelper.adopt(this, stylesheet);
+    }
+
+    /**
+     * This can be overwritten per component to include stylesheets or strings of
+     * css into the shadow root
+     *
+     * @returns {*[]}
+     */
+    getAdoptedStyles() {
+        return [];
+    }
+
+    /**
+     * Creates an instance of the component
+     *
+     * @param options
+     * @returns {DigitalNatureWebComponent}
+     */
     static create(options = {})
     {
         if (!this.tagName) {
