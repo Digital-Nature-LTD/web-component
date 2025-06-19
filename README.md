@@ -89,6 +89,46 @@ let myComponentInstance = MyNewComponent.create({
 document.appendChild(myComponentInstance);
 ```
 
+### Adopted stylesheets
+Stylesheets can be adopted in 3 ways, giving flexibility over how you style the component globally whilst retaining the ability to style components individually. 
+
+#### What can be adopted?
+- A css file, by url
+- css rules in a string
+- a `CSSStyleSheet`
+
+#### Styles for all instance of your component
+Add the `getAdoptedStyles` function to your component, it should return an array of the items to be adopted
+```javascript
+class MyNewComponent extends DigitalNatureWebComponent {
+    getAdoptedStyles() {
+        return [
+            "/path/to/your/css/file.css",
+            "div { background: blue; }"
+        ];
+    }
+}
+```
+
+#### Styles passed as options
+Pass in a stylesheets option when using the static `create` method.
+```javascript
+let myComponentInstance = MyNewComponent.create({
+    stylesheets: [
+        "/path/to/your/css/file.css",
+        "div { background: red; }"
+    ]
+});
+```
+
+#### Styles passed in direct to instance of component
+Components have an `adopt` method, note that this accepts only one rule at a time
+```javascript
+let oneParticularComponent = document.querySelector('my-new-component#the-one');
+oneParticularComponent.adopt("div { background: purple; }");
+```
+
+
 ## Configuration
 When calling the base component constructor you can pass in a configuration object, the available options are listed below
 
@@ -112,4 +152,4 @@ If you are attaching the shadow DOM then this controls the mode, options are `op
 The template should be a string of HTML
 
 ### stylesheets
-An array of stylesheets to be adopted by the component, either as a string or an instance of `CSSStyleSheet`
+An array of stylesheets to be adopted by the component, either as a URL string, a CSS string or an instance of `CSSStyleSheet`
